@@ -15,4 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/','uploadFile@index');
 
+Route::get('openType','uploadFile@openType');
+
 Route::post('postFile','uploadFile@upload')->name('postFile');
+
+Route::post('saveData','uploadFile@saveData')->name('saveData');
