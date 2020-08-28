@@ -20,12 +20,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9044580a-22fe-46b7-b6f9-b93af378c97b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/js/opentype.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/bootstrap.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/bootstrap.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-3.5.1.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/showList.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/uploadFile.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/uploadFile.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/openType.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/openType.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/opentype.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/openType.blade.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
@@ -163,17 +166,19 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../phpDemo" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\font\public" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\font\public\css" />
       <recent name="C:\xampp\htdocs\font\storage\app\public" />
       <recent name="C:\xampp\htdocs\font\public\js" />
       <recent name="C:\xampp\htdocs\font\storage\app\font\Signika" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\font\public\js" />
+      <recent name="C:\xampp\htdocs\font\public" />
     </key>
   </component>
   <component name="RunManager">
@@ -196,7 +201,8 @@
       <workItem from="1598320754398" duration="22530000" />
       <workItem from="1598405031076" duration="21870000" />
       <workItem from="1598434043286" duration="3532000" />
-      <workItem from="1598493866805" duration="2937000" />
+      <workItem from="1598493866805" duration="17954000" />
+      <workItem from="1598580865962" duration="9840000" />
     </task>
     <servers />
   </component>
@@ -216,6 +222,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1598500901287">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/1920.0.1600.860@0.0.1920.1040" timestamp="1598500901287" />
     <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1597916460888">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -224,6 +234,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="761" y="384" key="#com.jetbrains.php.refactoring.move.PhpMoveClassDialog#0/0.0.1920.1040/1920.0.1600.860@0.0.1920.1040" timestamp="1597995964857" />
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1598589495009">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1600.860@0.0.1920.1040" timestamp="1598589495009" />
     <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1598007850838">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -248,10 +262,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="1216" y="241" key="NewPhpClassDialog/0.0.1920.1040/1920.0.1600.860@0.0.1920.1040" timestamp="1597916435469" />
-    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1598063245803">
+    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1598503140480">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040/1920.0.1600.860@0.0.1920.1040" timestamp="1598063245803" />
+    <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040/1920.0.1600.860@0.0.1920.1040" timestamp="1598503140480" />
     <state x="-99" y="153" width="1736" height="856" key="dock-window-1" timestamp="1597979686119">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

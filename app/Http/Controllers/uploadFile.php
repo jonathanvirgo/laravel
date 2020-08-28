@@ -13,10 +13,6 @@ class uploadFile extends Controller
         return view('welcome');
     }
 
-    public function openType(){
-        return view('welcome'); // compact chuỗi chứ k phải biến a nhé
-    }
-
     /**
      * @param $request
      */
@@ -52,13 +48,31 @@ class uploadFile extends Controller
     }
     public function saveData(Request $request){
         $results = DB::select('select * from fonts where name = ?', [$request->name]);
-        if(count($request->listFont) > 0){
+        if($request->listFont !== null){
             $listFontJson = json_encode($request->listFont);
             if(count($results) == 0){
                 DB::insert('insert into fonts ( name, path, list_font) values (?, ?, ?)', [$request->name, $request->pathRegular, $listFontJson]);
             }else{
                 DB::update('update fonts set path = ?,list_font = ?  where name = ?', [$request->pathRegular,$listFontJson,$request->name]);
             }
+        }
+    }
+    public function showData(){
+        $results = DB::select('select * from fonts');
+        return view('showList',compact('results'));
+    }
+    public function updateName(Request $request){
+        $results = DB::select('select * from fonts where id = ?', [$request->id]);
+        if(count($results) > 0){
+            DB::update('update fonts set name = ?  where id = ?', [$request->name,$request->id]);
+        }
+    }
+
+    public function deleteFont($id){
+        $results = DB::select('select * from fonts where id = ?', [$id]);
+        if(count($results) > 0){
+            DB::table('fonts')->delete($id);
+            return redirect('/showData');
         }
     }
 }

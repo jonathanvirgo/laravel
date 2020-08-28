@@ -3,93 +3,15 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Laravel</title>
+        <title>Upload Font</title>
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-            .flex-display{
-                display: flex;
-                flex-direction: row;
-            }
-            .flex-item1{
-                width: 30%;
-                font-family: "Roboto";
-                color: black;
-            }
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-            .content{
-                padding-left: 20px;
-            }
-            .center {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 44px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-            .name-font{
-                color: black;
-                font-family: Roboto;
-                font-size: 33px;
-                margin: 20px;
-                padding-left: 120px;
-            }
-            .bt-save{
-                position: relative;
-                top: 25px;
-            }
-            .check-all{
-                position: relative;
-                top: 30px;
-                left: 92px;
-            }
-        </style>
+        <link href="{{ URL::asset('css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ URL::asset('css/style.css') }}" rel="stylesheet">
     </head>
     <body>
-        <div class="position-ref full-height">
+        <div class="position-ref container-fluid">
             <div class="content">
                 <div class="title m-b-md center">
                     Upload Font
@@ -99,17 +21,20 @@
                     <input type="file" name="font">
                     <input type="submit">
                 </form>
+                <input type="button" onclick="window.location='{{ URL::route('showData')}}'" value="Danh sách font" style="position: absolute;top: 96px;left: 420px;">
                 <div style="display: none" class="div-name flex-display">
                     <div class="name-font flex-item1"></div>
                     <div>
-{{--                        <form action="{{route('saveData')}}" method="post">--}}
-{{--                            <input type="hidden" class="json-font-array" name="list-font" enctype="multipart/form-data">--}}
-                            <input type="button" value="Save" class="bt-save" onclick="onSave()">
-{{--                        </form>--}}
+                        <input type="button" value="Save" class="bt-save" onclick="onSave()">
                     </div>
                     <input type="checkbox" class="check-all" onclick="checkAll()">
                 </div>
-                <div class="list-font">
+                <div class="list-font"></div>
+                <div class="alert alert-success w-25 fixed-bottom" role="alert" style="left: 74%;position: fixed">
+                    Success
+                </div>
+                <div class="alert alert-warning w-25 fixed-bottom" role="alert" style="left: 74%;position: fixed">
+                    Error
                 </div>
                 <ul style="visibility: hidden">
                     @if(session()->has('listFile'))
@@ -121,15 +46,16 @@
             </div>
         </div>
         <script type="text/javascript" src="{{ URL::asset('js/opentype.min.js') }}"></script>
-        <script
-            src="https://code.jquery.com/jquery-3.5.1.min.js"
-            integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
-            crossorigin="anonymous"></script>
+        <script type="text/javascript" src="{{ URL::asset('js/jquery-3.5.1.min.js') }}"></script>
+        <script type="text/javascript" src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
         <script>
+            $('.alert-success').hide();
+            $('.alert-warning').hide();
+            $('.list-data').hide();
             var listFont = [];
             var name = '';
             var pathRegular = '';
-            var id = Date.now() + (Math.random()*100).toFixed();
+            // var id = Date.now() + (Math.random()*100).toFixed();
             if(document.querySelectorAll('.item').length > 0) {
                 document.querySelector('.div-name').style.display = 'flex';
                 document.querySelectorAll('.item').forEach(function (element) {
@@ -140,12 +66,11 @@
                         document.getElementsByClassName('name-font')[0].innerHTML = name;
                         Promise.resolve(getPath(element.textContent, nameFont)).then(path =>{
                             let timestamp = Date.now() + (Math.random()*100).toFixed();
-                            let fontObj = {id: timestamp, link: element.textContent, path: path, name: nameFont, fontFamilyId: id};
+                            let fontObj = {id: timestamp, link: element.textContent, path: path, name: nameFont};
                             listFont.push(fontObj);
                             makeTable(fontObj, listFont.length);
+                            // console.log("nameFont",nameFont, nameFont.includes('Regular'));
                             if(nameFont.includes('Regular')){
-                                pathRegular = path;
-                            }else{
                                 pathRegular = path;
                             }
                         });
@@ -154,7 +79,7 @@
                 document.querySelector('.check-all').checked = true;
             }
             async function getPath(link, name){
-                console.log("link", 'storage' + link.slice(6));
+                // console.log("link", 'storage' + link.slice(6));
                 var font = await opentype.load('storage' + link.slice(6));
                 var path = font.getPath(name, 0, 14, 14);
                 return path.toSVG();
@@ -213,20 +138,24 @@
                 }
             }
             function onSave(){
-                $.ajax('/saveData', {
+                var listFontActive = listFont.filter(s => s.active == true);
+                $.ajax('{{url("/saveData")}}', {
                     type: 'POST',
                     data:{
-                        id:id,
                         name:name,
-                        listFont: listFont.filter(s => s.active == true),
-                        pathRegular: pathRegular,
+                        listFont: listFontActive,
+                        pathRegular: pathRegular == '' ? listFontActive[listFontActive.length - 1].path: pathRegular,
                         _token: '{{csrf_token()}}'
                     },
                     success:function(response) {
-                        console.log(response);
+                        $(".alert-success").fadeTo(2000, 500).slideUp(500, function() {
+                            $(".alert-success").slideUp(500);
+                        });
                     },
                     error:function (error){
-                        console.log(error);
+                        $(".alert-warning").fadeTo(2000, 500).slideUp(500, function() {
+                            $(".alert-warning").slideUp(500);
+                        });
                     }
                 })
             }
